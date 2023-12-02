@@ -2,14 +2,16 @@ package tn.esprit.ecoventura.model
 import android.os.Parcel
 import android.os.Parcelable
  data class Guide(
-    val _id: String,
-    val fullname: String,
-    val location: String,
-    val image: String,
-    val description: String,
-    val reviews: String,
-    val price: String
-): Parcelable {
+     val _id: String,
+     val fullname: String,
+     val location: String,
+     val image: String,
+     val description: String,
+     val reviews: String,
+     val price: String,
+     val availability: List<String> = emptyList(),
+
+     ): Parcelable {
      constructor(parcel: Parcel) : this(
          parcel.readString() ?: "",
          parcel.readString() ?: "",
@@ -18,6 +20,7 @@ import android.os.Parcelable
          parcel.readString() ?: "",
          parcel.readString() ?: "",
          parcel.readString() ?: "",
+
      )
 
      override fun describeContents(): Int {

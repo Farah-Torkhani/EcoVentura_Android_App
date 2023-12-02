@@ -9,7 +9,7 @@ import android.text.style.ForegroundColorSpan
 import android.util.Log
 import android.view.View
 import tn.esprit.ecoventura.R
-
+import android.content.Intent
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -44,7 +44,7 @@ class guideActivity :  AppCompatActivity(), GuideAdapter.OnItemClickListener {
         guiderecyclerView.setLayoutManager(layoutManager)
 
         // Initialiser et configurer l'adaptateur
-        guideAdapter = GuideAdapter()
+        guideAdapter = GuideAdapter(this)
         guiderecyclerView.adapter = guideAdapter // Associer l'adaptateur au RecyclerView
         guideAdapter.setGuides(guideList)   // Configurer l'adaptateur pour RecyclerView avec la liste d'achats
 
@@ -127,10 +127,12 @@ class guideActivity :  AppCompatActivity(), GuideAdapter.OnItemClickListener {
             textView.text = spannableString
         }
 
-
     override fun onItemClick(guide: Guide) {
-      Log.d("c","hello")
+        val intent = Intent(this, guideDetailActivity::class.java)
+        intent.putExtra("_id", guide._id)
+        startActivity(intent)
     }
+
 
 
 }

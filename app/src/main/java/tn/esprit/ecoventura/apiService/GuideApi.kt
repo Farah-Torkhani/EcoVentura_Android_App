@@ -14,7 +14,10 @@ import tn.esprit.ecoventura.model.GuideApiResponse
 interface GuideApi {
     @GET("/api/guides")
     suspend fun getAllGuides(): Response<GuideApiResponse>
-
+    @GET("/api/guides/{id}/availability")
+    suspend fun getGuideAvailability(@Path("id") guideId: String): Response<List<String>>
+    @GET("/api/guide/{id}")
+    suspend fun getGuideDetail(@Path("id") _id: String): Response<Guide>
     companion object {
         private var BASE_URL = "http://192.168.56.1:3000/"
         fun create(): GuideApi {

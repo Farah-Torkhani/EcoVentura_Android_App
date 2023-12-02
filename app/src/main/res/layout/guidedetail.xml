@@ -1,0 +1,85 @@
+<!-- res/layout/activity_hotel_detail.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#FFFFFF">
+
+    <!-- Hotel Image -->
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        />
+
+    <!-- Hotel Name -->
+    <TextView
+        android:id="@+id/fullnameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="5dp"
+        android:text="Guide Name"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"/>
+
+    <!-- Star Rating -->
+    <ImageView
+        android:id="@+id/image_star"
+        android:layout_width="53dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/fullnameTextView"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_star_foreground" />
+
+    <!-- Number of Stars -->
+    <TextView
+        android:id="@+id/text_star_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fullnameTextView"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="30dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:text="5" />
+
+    <!-- Hotel Location -->
+    <TextView
+        android:id="@+id/locationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_star"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="5dp"
+        android:text="Guide Location "
+        android:textSize="18sp"
+        android:textColor="@android:color/black"/>
+
+    <!-- Hotel Description -->
+    <TextView
+        android:id="@+id/text_Guide_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/locationTextView"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="5dp"
+        android:text="Guide  Description. This is a sample description of the guide. Replace it with the actual description."
+        android:textSize="16sp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/priceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_Guide_description"
+        android:textColor="#0000FF"
+        android:textSize="13sp"
+        android:text="Guide Price" />
+
+</RelativeLayout>

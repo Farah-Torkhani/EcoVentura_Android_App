@@ -14,7 +14,7 @@ import tn.esprit.ecoventura.R
 import tn.esprit.ecoventura.model.Guide
 
 
-class GuideAdapter(
+class GuideAdapter(private val listener:OnItemClickListener
 
 
 
@@ -50,7 +50,7 @@ class GuideAdapter(
                 itemView.setOnClickListener {
                     val position = adapterPosition
                     if (position != RecyclerView.NO_POSITION) {
-                      //listener.onItem(guides[position])
+                      listener.onItemClick(myGuides[position])
                     }
                 }
             }

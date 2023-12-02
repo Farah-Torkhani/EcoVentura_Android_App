@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar" />
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Add a primary color here -->
+        <item name="colorPrimary">#2196F3</item> <!-- Blue color -->
+        <item name="colorPrimaryDark">#1976D2</item> <!-- Darker shade of blue -->
+        <item name="colorAccent">#FF0000FF</item> <!-- Pink accent color -->
+    </style>
+    <style name="BlueDatePicker" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
+        <item name="colorAccent">#FF0000FF</item> <!-- Blue color -->
+    </style>
+
+
+
 </resources>

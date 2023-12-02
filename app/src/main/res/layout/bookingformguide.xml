@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:datePickerMode="calendar"/>
+    <EditText
+        android:id="@+id/hoursEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Number of Hours"
+        android:inputType="number"
+        android:layout_below="@id/datePicker"
+        android:layout_marginTop="16dp"
+        />
+
+    <TextView
+        android:id="@+id/totalPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@android:color/holo_blue_light"
+        android:layout_below="@id/hoursEditText"
+        android:layout_marginTop="16dp"/>
+
+    <Switch
+        android:id="@+id/forMeSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="For Me"
+        android:layout_below="@id/totalPriceTextView"
+        android:layout_marginTop="16dp"/>
+</RelativeLayout>

@@ -82,4 +82,13 @@
         android:textSize="13sp"
         android:text="Guide Price" />
 
+    <Button
+        android:id="@+id/bookNowButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priceTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Book Now" />
+
 </RelativeLayout>

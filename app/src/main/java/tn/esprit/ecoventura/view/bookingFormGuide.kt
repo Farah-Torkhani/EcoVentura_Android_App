@@ -6,6 +6,7 @@ import android.os.Parcelable
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.Switch
@@ -21,6 +22,7 @@ import kotlinx.coroutines.launch
 import tn.esprit.ecoventura.R
 import tn.esprit.ecoventura.apiService.GuideApi
 import tn.esprit.ecoventura.model.Guide
+import tn.esprit.ecoventura.model.ReservationRequest
 import java.util.*
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,11 +43,18 @@ class BookingFormActivity : AppCompatActivity() {
         setContentView(R.layout.bookingformguide)
         hoursEditText = findViewById(R.id.hoursEditText)
         totalPriceTextView = findViewById(R.id.totalPriceTextView)
+        val bookNowButton: Button = findViewById(R.id.bookButton)
+
+        bookNowButton.setOnClickListener {
+            Log.d("button", "clicked")
+            handleBooking()
+        }
 
         forMeSwitch = findViewById(R.id.forMeSwitch)
         val guideId = "6569d53564a23b36f0344908"
         // Assume you passed the Guide object to this activity
-        guide = intent.getParcelableExtra("guide") ?: Guide("", "", "", "", "", "", "")
+        guide = intent.getParcelableExtra("GUIDE_OBJECT")!!
+        Log.d("guideInForm", "$guide")
 
         // Add TextWatcher to calculate total price dynamically
         hoursEditText.addTextChangedListener(object : TextWatcher {
@@ -63,13 +72,67 @@ class BookingFormActivity : AppCompatActivity() {
             }
         })
 
+
         // Fetch guide availability and set available dates in the date picker
         fetchGuideAvailability(guideId)
     }
+
+    // Add a new function to handle the booking
+    private fun handleBooking() {
+        Log.d("button", "clicked")
+        //val selectedDate: Long = datePicker.selection ?: return
+        val numberOfHours: Int = hoursEditText.text.toString().toIntOrNull() ?: return
+
+        // Assuming you have the user ID and location, you need to replace these with actual values
+        val userId = "655aa08d78adce5f7b9a9159"
+        val location = "location"
+
+        val reservationRequest = ReservationRequest(userId, numberOfHours, location)
+
+        // Assuming you have a valid guide ID from the previous activity
+        val guideId = guide._id
+
+        // Make the API call to add a reservation
+        val guideApi = GuideApi.create()
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                val response = guideApi.addGuideReservation(guideId, reservationRequest)
+                if (response.isSuccessful) {
+                    // Reservation added successfully
+                    val reservationResponse = response.body()
+                    Log.d("button", "works")
+                    Toast.makeText(
+                        this@BookingFormActivity,
+                        "Reservation added successfully",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    // Handle any further actions upon successful reservation
+                } else {
+                    // Handle API error
+                    Log.d("button", "doesn't work")
+                    Toast.makeText(
+                        this@BookingFormActivity,
+                        "Failed to add reservation. Please try again.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } catch (e: Exception) {
+                // Handle exception
+                Toast.makeText(
+                    this@BookingFormActivity,
+                    "An error occurred: ${e.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                Log.d("button", "Problem")
+                Log.e("BookingFormActivity", "Error: ${e.message}", e)
+            }
+        }
+    }
+
     private fun calculateAndDisplayTotalPrice(hoursText: String) {
         if (hoursText.isNotBlank()) {
             val numberOfHours = hoursText.toInt()
-            val pricePerHour = 15 // Assuming pricePerHour is a property in the Guide model
+            val pricePerHour = guide.price
             val totalPrice = numberOfHours * pricePerHour
             totalPriceTextView.text = "Total Price: $totalPrice" // Update the UI with the total price
         } else {

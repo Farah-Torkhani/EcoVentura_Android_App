@@ -8,7 +8,7 @@ import android.os.Parcelable
      val image: String,
      val description: String,
      val reviews: String,
-     val price: String,
+     val price: Double,
      val availability: List<String> = emptyList(),
 
      ): Parcelable {
@@ -19,8 +19,8 @@ import android.os.Parcelable
          parcel.readString() ?: "",
          parcel.readString() ?: "",
          parcel.readString() ?: "",
-         parcel.readString() ?: "",
-
+         parcel.readDouble(),
+         parcel.createStringArrayList() ?: emptyList()
      )
 
      override fun describeContents(): Int {
@@ -29,13 +29,14 @@ import android.os.Parcelable
 
 
      override fun writeToParcel(parcel: Parcel, flags: Int) {
+         parcel.writeString(_id)
          parcel.writeString(fullname)
          parcel.writeString(location)
          parcel.writeString(image)
          parcel.writeString(description)
          parcel.writeString(reviews)
-         parcel.writeString(price)
-
+         parcel.writeDouble(price)
+         parcel.writeStringList(availability)
      }
      companion object CREATOR : Parcelable.Creator<Guide> {
          override fun createFromParcel(parcel: Parcel): Guide {

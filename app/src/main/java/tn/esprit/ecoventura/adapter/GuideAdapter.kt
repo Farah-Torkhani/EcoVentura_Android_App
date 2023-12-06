@@ -58,7 +58,7 @@ class GuideAdapter(private val listener:OnItemClickListener
             fun bind(guide: Guide) {
                 titleTextView.text = guide.fullname
                 descriptionTextView.text = guide.location
-                priceTextView.text = guide.price
+                priceTextView.text = guide.price.toString()
 
                 val imageUrl = guide.image
 

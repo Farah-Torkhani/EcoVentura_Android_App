@@ -1,9 +1,11 @@
 package tn.esprit.ecoventura.view
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -23,6 +25,8 @@ class guideDetailActivity : AppCompatActivity() {
 //    private var guideList: ArrayList<guide> = ArrayList()
 //    lateinit var guideAdapter: guideAdapter
 
+    private lateinit var guide: Guide
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.guidedetail)
@@ -31,6 +35,8 @@ class guideDetailActivity : AppCompatActivity() {
          val imageView: ImageView = findViewById(R.id.imageView)
          val priceTextView:TextView = findViewById(R.id.priceTextView)
        val  descriptionTextView:TextView = findViewById(R.id.text_Guide_description)
+        val bookNowButton: Button = findViewById(R.id.bookNowButton)
+
 
 
         // get guidedId from intent
@@ -45,12 +51,13 @@ class guideDetailActivity : AppCompatActivity() {
             try {
                 val response = apiService.getGuideDetail(_id ?: "")
                 if (response.isSuccessful) {
-                    val guide = response.body()
+                        guide = response.body()!!
 
 
                         fullnameTextView.text = guide?.fullname
                         descriptionTextView.text = guide?.description
-                        priceTextView.text = guide?.price
+                        priceTextView.text = guide?.price.toString()
+                        Log.d("guideInGuideDetail", "$guide")
                         locationTextView.text = guide?.location
                         val imageUrl = guide?.image
 
@@ -71,6 +78,12 @@ class guideDetailActivity : AppCompatActivity() {
                 Log.e("guideDetailActivity", "Error: ${e.message}", e)
             }
 
+        }
+
+        bookNowButton.setOnClickListener {
+            val intent = Intent(this, BookingFormActivity::class.java)
+            intent.putExtra("GUIDE_OBJECT", guide)
+            startActivity(intent)
         }
     }
     private fun showToast(message: String) {

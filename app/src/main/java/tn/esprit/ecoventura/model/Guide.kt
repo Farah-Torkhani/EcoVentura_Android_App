@@ -50,8 +50,6 @@ import android.os.Parcelable
  }
 
 data class GuideApiResponse(
-    val statusCode: Int,
-    val message: String,
     val guides: List<Guide>
 )
 

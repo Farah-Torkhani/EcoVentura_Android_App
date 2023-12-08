@@ -38,7 +38,6 @@ class guideDetailActivity : AppCompatActivity() {
         val bookNowButton: Button = findViewById(R.id.bookNowButton)
 
 
-
         // get guidedId from intent
         val _id = intent.getStringExtra("_id")
         if (_id.isNullOrEmpty()) {

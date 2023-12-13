@@ -10,7 +10,6 @@ import android.os.Parcelable
      val reviews: String,
      val price: Double,
      val availability: List<String> = emptyList(),
-     //val reservations: List<String> = emptyList()
 
      ): Parcelable {
      constructor(parcel: Parcel) : this(
@@ -21,8 +20,7 @@ import android.os.Parcelable
          parcel.readString() ?: "",
          parcel.readString() ?: "",
          parcel.readDouble(),
-         parcel.createStringArrayList() ?: emptyList(),
-        // parcel.createStringArrayList() ?: emptyList()
+         parcel.createStringArrayList() ?: emptyList()
      )
 
      override fun describeContents(): Int {
@@ -39,7 +37,6 @@ import android.os.Parcelable
          parcel.writeString(reviews)
          parcel.writeDouble(price)
          parcel.writeStringList(availability)
-       //  parcel.writeStringList(reservations)
      }
      companion object CREATOR : Parcelable.Creator<Guide> {
          override fun createFromParcel(parcel: Parcel): Guide {
@@ -55,11 +52,5 @@ import android.os.Parcelable
 data class GuideApiResponse(
     val guides: List<Guide>
 )
-data class SingleGuideApiResponse(
-    val statusCode: Int,
-    val message: String,
-    val guide: Guide
-)
-
 
 

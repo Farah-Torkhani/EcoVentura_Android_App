@@ -30,17 +30,18 @@ class guideDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.guidedetail)
-         val fullnameTextView: TextView = findViewById(R.id.fullnameTextView)
-         val locationTextView: TextView = findViewById(R.id.locationTextView)
-         val imageView: ImageView = findViewById(R.id.imageView)
-         val priceTextView:TextView = findViewById(R.id.priceTextView)
-       val  descriptionTextView:TextView = findViewById(R.id.text_Guide_description)
+        val fullnameTextView: TextView = findViewById(R.id.fullnameTextView)
+        val locationTextView: TextView = findViewById(R.id.locationTextView)
+        val imageView: ImageView = findViewById(R.id.imageView)
+        val priceTextView:TextView = findViewById(R.id.priceTextView)
+        val  descriptionTextView:TextView = findViewById(R.id.text_Guide_description)
         val bookNowButton: Button = findViewById(R.id.bookNowButton)
 
 
         // get guidedId from intent
-        val _id = intent.getStringExtra("_id")
-        if (_id.isNullOrEmpty()) {
+        val id = intent.getStringExtra("id")
+        Log.d("id", "$id");
+        if (id.isNullOrEmpty()) {
             showToast("Invalid guide ID.")
             finish() // Close the activity if the ID is not provided.
             return
@@ -48,11 +49,12 @@ class guideDetailActivity : AppCompatActivity() {
         val apiService = GuideApi.create()
         lifecycleScope.launch(Dispatchers.Main) {
             try {
-                val response = apiService.getGuideDetail(_id ?: "")
+                val response = apiService.getGuideDetail(id)
+                Log.d("response first", "$response");
                 if (response.isSuccessful) {
-                        guide = response.body()!!
-
-
+                    val singleGuideApiResponse = response.body()
+                    if (singleGuideApiResponse != null) {
+                        guide = singleGuideApiResponse.guide
                         fullnameTextView.text = guide?.fullname
                         descriptionTextView.text = guide?.description
                         priceTextView.text = guide?.price.toString()
@@ -63,9 +65,10 @@ class guideDetailActivity : AppCompatActivity() {
                         Log.d("image", "$imageUrl")
 
 
-                    Picasso.get()
-                        .load(guide?.image)
-                        .into(imageView)
+                        Picasso.get()
+                            .load(guide?.image)
+                            .into(imageView)
+                    }
 
                 } else {
                     showToast("Failed to fetch guided details.")

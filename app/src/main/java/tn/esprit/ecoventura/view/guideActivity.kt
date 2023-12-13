@@ -129,7 +129,7 @@ class guideActivity :  AppCompatActivity(), GuideAdapter.OnItemClickListener {
 
     override fun onItemClick(guide: Guide) {
         val intent = Intent(this, guideDetailActivity::class.java)
-        intent.putExtra("_id", guide._id)
+        intent.putExtra("id", guide._id)
         startActivity(intent)
     }
 

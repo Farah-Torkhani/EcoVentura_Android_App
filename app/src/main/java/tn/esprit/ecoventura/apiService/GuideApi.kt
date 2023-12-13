@@ -11,6 +11,7 @@ import tn.esprit.ecoventura.model.Guide
 import tn.esprit.ecoventura.model.GuideApiResponse
 import tn.esprit.ecoventura.model.ReservationRequest
 import tn.esprit.ecoventura.model.ReservationResponse
+import tn.esprit.ecoventura.model.SingleGuideApiResponse
 
 interface GuideApi {
     @GET("/api/guides")
@@ -20,7 +21,7 @@ interface GuideApi {
     suspend fun getGuideAvailability(@Path("id") guideId: String): Response<List<String>>
 
     @GET("/api/guide/{id}")
-    suspend fun getGuideDetail(@Path("id") _id: String): Response<Guide>
+    suspend fun getGuideDetail(@Path("id") _id: String): Response<SingleGuideApiResponse>
 
     @POST("/api/guides/{id}/reservations")
     suspend fun addGuideReservation(

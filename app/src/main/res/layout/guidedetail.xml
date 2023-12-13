@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#FFFFFF">
+    android:backgroundTint="#FFFFFF"
+    android:layout_marginStart="5dp">
 
     <!-- Hotel Image -->
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:scaleType="centerCrop"
+        android:scaleType="fitXY"
         />
 
     <!-- Hotel Name -->
@@ -21,74 +22,131 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="5dp"
         android:text="Guide Name"
         android:textSize="24sp"
         android:textColor="@android:color/black"/>
+
+    <LinearLayout
+        android:id="@+id/reviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/fullnameTextView">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reviews:  "
+            android:textSize="18sp"
+            android:textColor="@android:color/black"/>
 
     <!-- Star Rating -->
     <ImageView
         android:id="@+id/image_star"
         android:layout_width="53dp"
-        android:layout_height="70dp"
+        android:layout_height="20dp"
         android:layout_below="@id/fullnameTextView"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="8dp"
         android:src="@drawable/ic_star_foreground" />
 
     <!-- Number of Stars -->
+
     <TextView
         android:id="@+id/text_star_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@id/fullnameTextView"
 
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="30dp"
         android:textSize="16sp"
         android:textColor="@android:color/black"
         android:text="5" />
+    </LinearLayout>
 
-    <!-- Hotel Location -->
-    <TextView
-        android:id="@+id/locationTextView"
+
+    <LinearLayout
+        android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/image_star"
+        android:orientation="horizontal"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="5dp"
-        android:text="Guide Location "
-        android:textSize="18sp"
-        android:textColor="@android:color/black"/>
+        android:layout_below="@id/reviews">
+    <!-- Hotel Location -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location:  "
+            android:textSize="18sp"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/locationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Guide Location "
+            android:textSize="18sp"
+            android:textColor="@android:color/black"/>
+    </LinearLayout>
 
-    <!-- Hotel Description -->
-    <TextView
-        android:id="@+id/text_Guide_description"
-        android:layout_width="match_parent"
+
+
+    <LinearLayout
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/locationTextView"
+        android:orientation="horizontal"
         android:layout_marginTop="16dp"
-        android:layout_marginStart="5dp"
-        android:text="Guide  Description. This is a sample description of the guide. Replace it with the actual description."
-        android:textSize="16sp"
-        android:textColor="@android:color/black"/>
+        android:layout_below="@id/location">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description:  "
+            android:textSize="18sp"
+            android:textColor="@android:color/black"/>
+
+        <TextView
+            android:id="@+id/text_Guide_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="Guide  Description. This is a sample description of the guide. Replace it with the actual description."
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/description">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price:  "
+            android:textSize="18sp"
+            android:textColor="@android:color/black"/>
 
     <TextView
         android:id="@+id/priceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/text_Guide_description"
+        android:layout_below="@id/description"
         android:textColor="#0000FF"
-        android:textSize="13sp"
+        android:textSize="15sp"
         android:text="Guide Price" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/bookNowButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/priceTextView"
+        android:layout_below="@id/price"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:text="Book Now" />
+
 
 </RelativeLayout>
